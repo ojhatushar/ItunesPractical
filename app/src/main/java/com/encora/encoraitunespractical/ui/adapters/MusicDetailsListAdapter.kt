@@ -3,16 +3,16 @@ package com.encora.encoraitunespractical.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.encora.encoraitunespractical.data.model.obj.xmlobj.Entry
-import com.encora.encoraitunespractical.data.model.obj.xmlobj.Feed
+import com.encora.encoraitunespractical.data.model.entities.MusicDataBean
 import com.encora.encoraitunespractical.databinding.ItemSongBinding
+import com.encora.encoraitunespractical.ui.interfaces.OnListCallback
 
 
-class MusicDetailsListAdapter :
+class MusicDetailsListAdapter(var onListClickCallback:OnListCallback) :
     RecyclerView.Adapter<MusicDetailsListAdapter.MyViewHolder>() {
 
 
-    var musicDetailsList = ArrayList<Entry>()
+    var musicDetailsList = ArrayList<MusicDataBean>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -33,18 +33,16 @@ class MusicDetailsListAdapter :
         //passing data using databinding for showing data through xml
         itemBinding.musicData = musicDetailsList[position]
 
-        //Glide for showing images
-        /* Glide.with(itemBinding.root.context)
-             .load(subCategoryDetailsList[position].detailImage)
-             .placeholder(R.mipmap.ic_launcher) // Uri of the picture
-             .into(itemBinding.ivImageRestaurant)*/
+        itemBinding.root.setOnClickListener {
+            onListClickCallback.onClick(musicDetailsList[position])
+        }
 
         itemBinding.executePendingBindings()
     }
 
     override fun getItemCount() = musicDetailsList.size
 
-    fun setMusicDataToView(musicDetailsData: List<Entry>?) {
+    fun setMusicDataToView(musicDetailsData: List<MusicDataBean>?) {
 
         this.musicDetailsList.apply {
             clear()

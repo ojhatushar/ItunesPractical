@@ -1,16 +1,23 @@
 package com.encora.encoraitunespractical.utils
 
+
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.WindowManager
 import com.encora.encoraitunespractical.R
-
-
-import java.lang.Exception
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 
 /**
@@ -100,6 +107,27 @@ object ProgressUtils {
             builder = null
 
         }
+    }
+
+    @Throws(IOException::class)
+    fun drawableFromUrl(url: String?): Drawable? {
+        var bitmapDrawable: BitmapDrawable? = null
+        val thread = Thread {
+            try {
+                val x: Bitmap
+                val connection: HttpURLConnection = URL(url).openConnection() as HttpURLConnection
+                connection.connect()
+                val input: InputStream = connection.getInputStream()
+                x = BitmapFactory.decodeStream(input)
+                bitmapDrawable = BitmapDrawable(Resources.getSystem(), x)
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        thread.start()
+
+        return bitmapDrawable
     }
 
 

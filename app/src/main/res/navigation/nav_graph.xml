@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SongDeatilsFragment"
-        android:name="com.bg.imusicplayer.data.view.MusicDetailsFragment"
+        android:name="com.encora.encoraitunespractical.ui.fragments.MusicDetailsFragment"
         android:label="@string/song_details_fragment_label"
         tools:layout="@layout/fragment_music_details">
 

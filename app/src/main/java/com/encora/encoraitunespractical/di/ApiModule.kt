@@ -5,6 +5,9 @@ import com.encora.encoraitunespractical.BuildConfig
 import com.encora.encoraitunespractical.data.remote.ApiService
 
 import com.encora.encoraitunespractical.utils.NetworkConnectionInterceptor
+import com.tickaroo.tikxml.TikXml
+import com.tickaroo.tikxml.converter.htmlescape.HtmlEscapeStringConverter
+import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -53,7 +56,12 @@ object ApiModule {
                         }
                     }.build()
             )
-            .addConverterFactory(SimpleXmlConverterFactory.create())
+            .addConverterFactory(TikXmlConverterFactory.create(
+                TikXml.Builder()
+                    .exceptionOnUnreadXml(false)
+                    .addTypeConverter(String.javaClass, HtmlEscapeStringConverter())
+                    .build()
+            ))
             .build()
             .create(ApiService::class.java)
 }

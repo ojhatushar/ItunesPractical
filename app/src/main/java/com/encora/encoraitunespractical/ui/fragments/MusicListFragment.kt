@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.encora.encoraitunespractical.data.model.obj.xmlobj.Entry
+import androidx.navigation.fragment.findNavController
+import com.encora.encoraitunespractical.R
+import com.encora.encoraitunespractical.data.model.entities.MusicDataBean
 import com.encora.encoraitunespractical.databinding.FragmentMusicListBinding
 import com.encora.encoraitunespractical.ui.adapters.MusicDetailsListAdapter
+import com.encora.encoraitunespractical.ui.interfaces.OnListCallback
+import com.encora.encoraitunespractical.utils.Constants.MUSIC_DATA
 import com.encora.encoraitunespractical.utils.extensions.makeGone
 import com.encora.encoraitunespractical.utils.extensions.makeVisible
 import com.encora.encoraitunespractical.utils.statusUtils.Status
@@ -26,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class MusicListFragment : Fragment() {
+class MusicListFragment : Fragment(),OnListCallback {
     private lateinit var binding: FragmentMusicListBinding
     private val viewModel by activityViewModels<MusicListViewModel>()
     private lateinit var musicDetailsListAdapter: MusicDetailsListAdapter
@@ -49,7 +53,7 @@ class MusicListFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        musicDetailsListAdapter = MusicDetailsListAdapter()
+        musicDetailsListAdapter = MusicDetailsListAdapter(this)
         binding.rvMusicList.adapter = musicDetailsListAdapter
 
     }
@@ -64,9 +68,8 @@ class MusicListFragment : Fragment() {
 
                         resource.data?.let { musicDetailsList ->
 
-                            if (musicDetailsList.entry!!.isNotEmpty()) {
-
-                                setMusicData(musicDetailsList.entry)
+                            if (musicDetailsList.isNotEmpty()) {
+                                setMusicData(musicDetailsList)
                             }
 
                         }
@@ -85,11 +88,20 @@ class MusicListFragment : Fragment() {
         }
     }
 
-    private fun setMusicData(musicDetailsList: List<Entry>?) {
+    private fun setMusicData(musicDetailsList: List<MusicDataBean>) {
         musicDetailsListAdapter.apply {
             setMusicDataToView(musicDetailsList)
             notifyDataSetChanged()
         }
+    }
+
+    override fun onClick(musicData: MusicDataBean) {
+        var bundle = Bundle()
+        bundle.putParcelable(MUSIC_DATA,musicData)
+        findNavController().navigate(
+            R.id.action_FirstFragment_to_SecondFragment,
+            bundle
+        )
     }
 
 }

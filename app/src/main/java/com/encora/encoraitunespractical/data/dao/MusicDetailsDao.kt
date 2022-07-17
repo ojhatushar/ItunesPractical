@@ -5,8 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.encora.encoraitunespractical.data.model.obj.xmlobj.Entry
-import com.encora.encoraitunespractical.data.model.obj.xmlobj.Feed
+import com.encora.encoraitunespractical.data.model.entities.MusicDataBean
 
 
 //DAO for CRUD operations in database
@@ -14,21 +13,10 @@ import com.encora.encoraitunespractical.data.model.obj.xmlobj.Feed
 @Dao
 interface MusicDetailsDao {
 
-   /* @Query("SELECT * FROM Feed")
-    fun getOfflineTopSongs() : LiveData<Feed>
+    @Query("select * from song_data")
+    fun getallSongs(): LiveData<List<MusicDataBean>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveTopSongInfo(ResultsItem : Feed)*/
+    suspend fun addAllSongs(addMusicData: List<MusicDataBean>)
 
-    @Query("select * from Feed")
-    fun getallSongs(): LiveData<Feed>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addAllSongs(tipList: Feed)
-
-    /*@Query("SELECT * from Feed where SubCategoryDetails.subCategoryID  = :id")
-    fun getSubCategoryDetailsById(id: String): LiveData<List<Feed>>*/
-
-    /*@Query("SELECT * FROM Feed")
-    fun getSubCategoryDetails(): LiveData<List<Feed>>*/
 }

@@ -11,7 +11,7 @@ class MusicListViewModel @Inject constructor(
     private val musicDetailsRepository: MusicDetailsRepository
 ) : ViewModel() {
 
-    //get Restaurant Details from api
+    //get Music Details from api
     fun getMusicDetails() =
         musicDetailsRepository.getMusicDetails()
 

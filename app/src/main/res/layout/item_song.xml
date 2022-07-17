@@ -11,9 +11,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivImage"
-            imageUrl="@{musicData.content}"
+            imageUrl="@{musicData.imageUrl}"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_placeholder" />
@@ -29,15 +30,15 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitle"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dimens_0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
-            android:text="@{musicData.name}"
+            android:text="@{musicData.title}"
             app:layout_constraintBottom_toBottomOf="@+id/ivImage"
             app:layout_constraintEnd_toStartOf="@id/ivRightArrow"
             app:layout_constraintStart_toEndOf="@id/ivImage"
             app:layout_constraintTop_toTopOf="@id/ivImage"
-            tools:text="Title" />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -46,7 +47,7 @@
 
         <variable
             name="musicData"
-            type="com.encora.encoraitunespractical.data.model.obj.xmlobj.Entry" />
+            type="com.encora.encoraitunespractical.data.model.entities.MusicDataBean" />
 
     </data>
 

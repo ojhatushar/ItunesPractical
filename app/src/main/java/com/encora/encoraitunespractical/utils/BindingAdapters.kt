@@ -18,4 +18,14 @@ object BindingAdapters {
             .into(imageView)
     }
 
+    @BindingAdapter("songDuration")
+    @JvmStatic
+    fun setDuration(tvDuration: AppCompatTextView, duration: Int) {
+
+        tvDuration.text = tvDuration.context.getString(
+            R.string.lbl_duration_value,
+            duration / 1000
+        )
+    }
+
 }
