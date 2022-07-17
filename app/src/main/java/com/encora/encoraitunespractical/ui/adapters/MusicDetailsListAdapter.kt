@@ -48,6 +48,7 @@ class MusicDetailsListAdapter(var onListClickCallback:OnListCallback) :
             clear()
             if (musicDetailsData != null) {
                 addAll(musicDetailsData)
+                notifyDataSetChanged()
             }
         }
     }

@@ -21,6 +21,6 @@ class MusicActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        supportActionBar?.title = getString(R.string.music_list)
+        supportActionBar?.title = getString(R.string.toolbar_name)
     }
 }

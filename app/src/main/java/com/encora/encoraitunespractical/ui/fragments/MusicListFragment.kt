@@ -91,7 +91,6 @@ class MusicListFragment : Fragment(),OnListCallback {
     private fun setMusicData(musicDetailsList: List<MusicDataBean>) {
         musicDetailsListAdapter.apply {
             setMusicDataToView(musicDetailsList)
-            notifyDataSetChanged()
         }
     }
 

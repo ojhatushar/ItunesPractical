@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "song_data")
+@Entity(tableName = "musicData")
 @Parcelize
 data class MusicDataBean(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,

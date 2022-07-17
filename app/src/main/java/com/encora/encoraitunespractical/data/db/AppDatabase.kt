@@ -14,7 +14,7 @@ import com.encora.encoraitunespractical.utils.DataConverter
 // Main Class for creating Room datasbase and defining versions entities etc
 @Database(
     entities = [MusicDataBean::class],
-    version = 2
+    version = 1
 )
 @TypeConverters(DataConverter::class)
 abstract class AppDatabase : RoomDatabase() {
