@@ -92,6 +92,7 @@ class MusicDetailsFragment : Fragment(), Player.Listener {
     }
 
     override fun onPlayerError(error: ExoPlaybackException) {
+        binding.progressBar.visibility = View.INVISIBLE
         binding.root.showSnackbar(error.localizedMessage, Snackbar.LENGTH_SHORT)
     }
 
