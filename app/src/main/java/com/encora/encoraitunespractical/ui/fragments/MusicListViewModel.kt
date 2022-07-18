@@ -8,12 +8,14 @@ import javax.inject.Inject
 //ViewModel for business logic
 @HiltViewModel
 class MusicListViewModel @Inject constructor(
-    private val musicDetailsRepository: MusicDetailsRepository
+    private val musicDetailsRepository: MusicDetailsRepository,
 ) : ViewModel() {
 
-    //get Music Details from api
-    fun getMusicDetails() =
-        musicDetailsRepository.getMusicDetails()
-
-
+    /**
+     * Here, we only need to return the LiveData<Resource<T>>, as logic required for this practical
+     * is inbuilt in performGetOperation method, that uses Single Source of Truth(Database).
+     * As this application will grow, more business logic can be placed here.
+     * And as this is a GET method, no other logic required here for now.
+     */
+    fun getMusicDetails() = musicDetailsRepository.getMusicDetails()
 }

@@ -9,20 +9,16 @@ import com.encora.encoraitunespractical.utils.statusUtils.Status
 
 import kotlinx.coroutines.Dispatchers
 
-fun <T> performGetOperationDatabase(
-    databaseQuery: () -> LiveData<T>
-): LiveData<Resource<T>> =
-    liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        val source = databaseQuery.invoke().map { Resource.success(it) }
-        emitSource(source)
-
-    }
-
+/*
+    * 1. First we need to let our LiveData know that we are looking for the data, so first state is Loading
+    * 2. Then it first looks in database for data,if found than state change to success
+    * 3. We also want to keep our app synced so we are fetching data from internet as well
+    * 4.  Finally we need to save our result from the remote call in the database,so that data remains updated
+*/
 fun <T, A> performGetOperation(
     databaseQuery: () -> LiveData<T>,
     networkCall: suspend () -> Resource<A>,
-    saveCallResult: suspend (A) -> Unit
+    saveCallResult: suspend (A) -> Unit,
 ): LiveData<Resource<T>> =
     liveData(Dispatchers.IO) {
         emit(Resource.loading())

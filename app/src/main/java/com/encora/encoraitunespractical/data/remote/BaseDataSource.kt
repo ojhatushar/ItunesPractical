@@ -20,7 +20,6 @@ abstract class BaseDataSource {
         } catch (e: NoInternetException) {
             handleException(e)
         } catch (e: Exception) {
-            Log.d("exception", "::" + e.message)
             handleException(e)
         }
     }

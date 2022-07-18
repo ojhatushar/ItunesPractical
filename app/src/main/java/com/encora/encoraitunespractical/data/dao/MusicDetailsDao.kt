@@ -14,7 +14,7 @@ import com.encora.encoraitunespractical.data.model.entities.MusicDataBean
 interface MusicDetailsDao {
 
     @Query("select * from musicData LIMIT :limit")
-    fun getallSongs(limit: Int): LiveData<List<MusicDataBean>>
+    fun getAllSongs(limit: Int): LiveData<List<MusicDataBean>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAllSongs(addMusicData: List<MusicDataBean>)

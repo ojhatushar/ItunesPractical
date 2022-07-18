@@ -20,10 +20,6 @@ import com.encora.encoraitunespractical.utils.extensions.makeVisible
 import com.encora.encoraitunespractical.utils.statusUtils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
 /**
  * A simple [Fragment] subclass.
  * Use the [MusicListFragment.newInstance] factory method to
@@ -35,10 +31,6 @@ class MusicListFragment : Fragment(),OnListCallback {
     private val viewModel by activityViewModels<MusicListViewModel>()
     private lateinit var musicDetailsListAdapter: MusicDetailsListAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +69,7 @@ class MusicListFragment : Fragment(),OnListCallback {
                     Status.ERROR -> {
                         binding.progressBar.makeGone()
                         Toast.makeText(activity, resource.message, Toast.LENGTH_LONG).show()
-                        Log.d("error", "" + resource.message)
+
 
                     }
                     Status.LOADING -> {
@@ -95,7 +87,7 @@ class MusicListFragment : Fragment(),OnListCallback {
     }
 
     override fun onClick(musicData: MusicDataBean) {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putParcelable(MUSIC_DATA,musicData)
         findNavController().navigate(
             R.id.action_FirstFragment_to_SecondFragment,

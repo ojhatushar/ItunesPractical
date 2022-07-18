@@ -12,7 +12,6 @@ import com.encora.encoraitunespractical.R
 import com.encora.encoraitunespractical.data.model.entities.MusicDataBean
 import com.encora.encoraitunespractical.databinding.FragmentMusicDetailsBinding
 import com.encora.encoraitunespractical.utils.Constants
-import com.encora.encoraitunespractical.utils.ProgressUtils.drawableFromUrl
 import com.encora.encoraitunespractical.utils.extensions.showSnackbar
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
@@ -23,12 +22,6 @@ import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -43,10 +36,8 @@ class MusicDetailsFragment : Fragment(), Player.Listener {
     private lateinit var simpleExoplayer: SimpleExoPlayer
     private var playbackPosition: Long = 0
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    private val dataSourceFactory: DataSource.Factory by lazy {
+        DefaultDataSourceFactory(requireActivity(), "exoplayer-sample")
     }
 
     override fun onCreateView(
@@ -61,10 +52,6 @@ class MusicDetailsFragment : Fragment(), Player.Listener {
         binding.musicData = singleMusicData
 
         return binding.root
-    }
-
-    private val dataSourceFactory: DataSource.Factory by lazy {
-        DefaultDataSourceFactory(requireActivity(), "exoplayer-sample")
     }
 
     override fun onStart() {

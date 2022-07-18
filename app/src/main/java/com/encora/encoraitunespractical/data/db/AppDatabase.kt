@@ -8,13 +8,14 @@ import androidx.room.TypeConverters
 import com.encora.encoraitunespractical.data.dao.MusicDetailsDao
 import com.encora.encoraitunespractical.data.model.entities.MusicDataBean
 import com.encora.encoraitunespractical.utils.Constants.DATABASE_NAME
+import com.encora.encoraitunespractical.utils.Constants.DATABASE_VERSION
 import com.encora.encoraitunespractical.utils.DataConverter
 
 
-// Main Class for creating Room datasbase and defining versions entities etc
+// Main Class for creating Room Database and defining versions entities etc
 @Database(
     entities = [MusicDataBean::class],
-    version = 1
+    version = DATABASE_VERSION
 )
 @TypeConverters(DataConverter::class)
 abstract class AppDatabase : RoomDatabase() {

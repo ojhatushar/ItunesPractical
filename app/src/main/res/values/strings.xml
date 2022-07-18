@@ -1,19 +1,18 @@
 <resources>
     <string name="app_name">EncoraItunesPractical</string>
     <string name="toolbar_name">Music App</string>
-    <string name="loading">Loading</string>
     <string name="no_internet">No Internet Connection</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_data">No Data Found</string>
 
     <string name="song_list_fragment_label">Music List Fragment</string>
     <string name="song_details_fragment_label">Music Details Fragment</string>
-    <string name="music_list">Music List</string>
 
     <string name="lbl_artist_value">Artist : %s</string>
     <string name="lbl_collection_value">Collection : %s</string>
     <string name="lbl_release_date_value">Release Date : %s</string>
     <string name="lbl_price_value">Price : %s</string>
     <string name="lbl_duration_value">Duration : %d seconds</string>
+    <string name="ib_pause">Pause</string>
+    <string name="ib_play">Play</string>
 </resources>
